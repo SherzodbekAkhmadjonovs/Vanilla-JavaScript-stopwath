@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JavaScript Stopwatch</title>
+    <style>
+        *{
+            background-color: #181414;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+        }
+        .container{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container h1, h2{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #646363;
+            font-size: 40px;
+        }
+        p{
+            font-family: 'Times New Roman', Times, serif;
+            color: #665959;
+            font-size: 34px;
+        }
+        .block{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 600px;
+            height: 10vh;
+        }
+        button{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 25px;
+            font-weight: 700;
+            padding: 18px 15px;
+            outline: none;
+            color: #c71717;
+            background-color: #ffa600;
+            border: none;
+            border-radius: 20px;
+            width: 140px;
+        }
+        button:hover{
+            color: black;
+            background-color: white;
+            transition: 1s;
+            border: 3px solid yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stopwatch</h1>
+        <h2>Vanilla JavaScript Stopwatch</h2>
+        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <div class="block">
+            <button id="button-start">Start</button>
+            <button id="button-stop">Stop</button>
+            <button id="button-reset">Reset</button>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+  
+        var seconds = 00; 
+        var tens = 00; 
+        var appendTens = document.getElementById("tens")
+        var appendSeconds = document.getElementById("seconds")
+        var buttonStart = document.getElementById('button-start');
+        var buttonStop = document.getElementById('button-stop');
+        var buttonReset = document.getElementById('button-reset');
+        var Interval ;
+
+        buttonStart.onclick = function() {
+            
+            clearInterval(Interval);
+            Interval = setInterval(startTimer, 10);
+        }
+        
+            buttonStop.onclick = function() {
+            clearInterval(Interval);
+        }
+        
+
+        buttonReset.onclick = function() {
+            clearInterval(Interval);
+            tens = "00";
+            seconds = "00";
+            appendTens.innerHTML = tens;
+            appendSeconds.innerHTML = seconds;
+        }
+        
+        
+        
+        function startTimer () {
+            tens++; 
+            
+            if(tens < 9){
+            appendTens.innerHTML = "0" + tens;
+            }
+            
+            if (tens > 9){
+            appendTens.innerHTML = tens;
+            
+            } 
+            
+            if (tens > 99) {
+            console.log("seconds");
+            seconds++;
+            appendSeconds.innerHTML = "0" + seconds;
+            tens = 0;
+            appendTens.innerHTML = "0" + 0;
+            }
+            
+            if (seconds > 9){
+            appendSeconds.innerHTML = seconds;
+            }
+        
+        }
+        
+
+        }
+    </script>
+</body>
+</html>
